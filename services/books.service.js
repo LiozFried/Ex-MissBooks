@@ -77,7 +77,7 @@ function _createBook() {
 
 function getDefualtListPrice() {
     var defualtListPrice = {
-        amount: null,
+        amount: getRandomIntInclusive(10, 350),
         currencyCode: 'EUR',
         isOnSale: Math.random() > 0.3 ? true : false
     }
