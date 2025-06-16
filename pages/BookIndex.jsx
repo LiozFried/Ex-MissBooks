@@ -1,4 +1,5 @@
 import { BookDetails } from "./BookDetails.jsx"
+import { BookFilter } from "../cmps/BookFilter.jsx"
 import { bookService } from "../services/books.service.js"
 
 const { useState, useEffect, Fragment } = React

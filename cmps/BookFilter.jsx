@@ -16,6 +16,50 @@ export function BookFilter({ defaultFilter, onSetFilter }) {
     }, [])
 
     function loadCategories() {
-        console.log('categories...')
+        bookService.getCategories()
+            .then(categories => setCategories(categories))
     }
+
+    function handleChange({ target }) {
+        const field = target.name
+        let value = target.value
+        switch (target.type) {
+            case 'number':
+            case 'range':
+                value = +value
+                break;
+            case 'checkbox':
+                value = target.checked
+                break
+        }
+
+        setFilterByToEdit(prevFilter => ({ ...prevFilter, [field]: value }))
+    }
+
+    const { txt, amount } = filterByToEdit
+    return (
+        <section className="book-filter container">
+            <h2>Filter</h2>
+
+            <form>
+                <label htmlFor="txt">Search</label>
+                <input onChange={handleChange} value={txt} name="txt" id="txt" type="text" />
+
+                <label htmlFor="amount">Min Price</label>
+                <input onChange={handleChange} value={amount || ''} name="amount" id="amount" type="number" />
+            </form>
+
+            <ul>
+                {categories && categories.map(category =>
+                    <li onClick={() => {
+                        const target = {
+                            name: 'txt',
+                            value: category
+                        }
+                        handleChange({ target })
+                    }} key={category}>{category}</li>
+                )}
+            </ul>
+        </section>
+    )
 }
