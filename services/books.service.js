@@ -9,7 +9,8 @@ export const bookService = {
     get,
     remove,
     save,
-    getDefaultFilter
+    getDefaultFilter,
+    getCategories,
 }
 
 function query(filterBy = {}) {
@@ -116,4 +117,11 @@ function _createBooks() {
         saveToStorage(BOOK_KEY, books)
     }
     console.log('books', books)
+}
+
+function getCategories() {
+    return query()
+        .then(books =>
+        [...new Set(books.flatMap(book => book.categories))]
+        )
 }
