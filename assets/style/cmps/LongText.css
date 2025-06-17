@@ -1,0 +1,9 @@
+.long-text {
+    span {
+        padding: 0.1em 0.3em;
+        background-color: rgb(182, 181, 181);
+        color: rgb(14, 11, 11);
+        border-radius: 5px;
+        cursor: pointer;
+    }
+}
