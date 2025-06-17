@@ -18,7 +18,11 @@ function query(filterBy = {}) {
         .then(books => {
             if (filterBy.txt) {
                 const regExp = new RegExp(filterBy.txt, 'i')
-                books = books.filter(book => regExp.test(book.title))
+                books = books.filter(book => regExp.test(book.title)
+                    || regExp.test(book.description)
+                    || regExp.test(book.subtitle)
+                    || book.categories.includes(filterBy.txt)
+                )
             }
             if (filterBy.amount) {
                 books = books.filter(book => book.listPrice.amount >= filterBy.amount)
@@ -122,6 +126,6 @@ function _createBooks() {
 function getCategories() {
     return query()
         .then(books =>
-        [...new Set(books.flatMap(book => book.categories))]
+            [...new Set(books.flatMap(book => book.categories))]
         )
 }
