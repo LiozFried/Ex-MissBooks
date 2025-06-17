@@ -51,7 +51,7 @@ export function BookFilter({ defaultFilter, onSetFilter }) {
 
             <ul>
                 {categories && categories.map(category =>
-                    <li onClick={() => {
+                    <li className="category" onClick={() => {
                         const target = {
                             name: 'txt',
                             value: category
