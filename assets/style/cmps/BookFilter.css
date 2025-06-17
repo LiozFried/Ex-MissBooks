@@ -1,0 +1,19 @@
+.book-filter {
+    background-color: var(--clr2bg);
+    padding-block: 0.5em;
+}
+
+.book-filter>h2 {
+    margin-top: 0;
+}
+
+.book-filter form {
+    display: grid;
+    grid-template-columns: 100px 200px;
+    gap: 0.7em;
+}
+
+.book-filter .category {
+    margin-block-start: 0.2em;
+    cursor: pointer;
+}
