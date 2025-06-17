@@ -56,6 +56,7 @@ export function BookFilter({ defaultFilter, onSetFilter }) {
                             name: 'txt',
                             value: category
                         }
+                        console.log(target)
                         handleChange({ target })
                     }} key={category}>{category}</li>
                 )}

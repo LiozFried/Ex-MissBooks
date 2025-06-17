@@ -2,7 +2,7 @@ const { useState } = React
 
 export function LongText({ txt, length = 100 }) {
 
-    const [isExpended, setIsExpended] = useState(True)
+    const [isExpended, setIsExpended] = useState(false)
 
     return (
         <p className="long-text">{isExpended ? txt : txt.substring(0, length)}
