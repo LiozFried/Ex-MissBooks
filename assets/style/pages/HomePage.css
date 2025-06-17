@@ -1,0 +1,8 @@
+.home {
+    margin-block-start: 1em;
+}
+
+.home h1 {
+    font-size: 2em;
+    text-decoration: underline;
+}
