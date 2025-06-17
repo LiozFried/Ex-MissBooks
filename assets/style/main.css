@@ -9,7 +9,14 @@
 @import "./base/forms.css";
 
 /* Pages */
-
+@import "./pages/About.css";
+@import "./pages/HomePage.css";
+@import "./pages/BookIndex.css";
+@import "./pages/BookDetails.css";
 
 /* Components */
 @import "./cmps/AppHeader.css";
+@import "./cmps/BookFilter.css";
+@import "./cmps/BookList.css";
+@import "./cmps/BookPreview.css";
+@import "./cmps/LongText.css";

@@ -1,0 +1,24 @@
+.book-details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.book-details h3 {
+    color: var(--clr1);
+    font-size: 1.7em;
+}
+
+.book-details .on-sale {
+    color: rgb(112, 23, 196);
+}
+
+.book-price {
+    &.red {
+        color: rgb(214, 0, 0);
+    }
+
+    &.green {
+        color: rgb(17, 182, 17);
+    }
+}

@@ -52,6 +52,7 @@ export function BookDetails({ bookId, onBack }) {
                         <li key={author}>{author}</li>
                     )}
                 </ul>
+                <h3>Other Details</h3>
                 <p>Price: <span className={`book-price ${getPriceClass(book.listPrice.amount)}`}>{book.listPrice.amount}</span></p>
                 <p>Page Count: {getPageCount(book.pageCount)}</p>
                 <p>Published Date: {getPublishDate(book.publishedDate)}</p>
