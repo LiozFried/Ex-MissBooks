@@ -2,18 +2,21 @@ import { BookPreview } from "../cmps/BookPreview.jsx"
 import { LongText } from "../cmps/LongText.jsx"
 import { bookService } from "../services/books.service.js"
 
+const {useParams, useNavigate, Link } = ReactRouterDOM
 const { useState, useEffect } = React
 
-export function BookDetails({ bookId, onBack }) {
+export function BookDetails() {
 
     const [book, setBook] = useState(null)
+    const params = useParams()
+    const navigate = useNavigate()
 
     useEffect(() => {
         loadBook()
-    }, [])
+    }, [params.bookId])
 
     function loadBook() {
-        bookService.get(bookId)
+        bookService.get(params.bookId)
             .then(book => setBook(book))
             .catch(err => console.log('err:', err))
     }
@@ -35,6 +38,10 @@ export function BookDetails({ bookId, onBack }) {
     function getPriceClass(amount) {
         if (amount > 150) return 'red'
         if (amount < 20) return 'green'
+    }
+
+    function onBack() {
+        navigate('/books')
     }
 
     if (!book) return <div>Loading...</div>
