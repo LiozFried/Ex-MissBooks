@@ -49,8 +49,8 @@ function save(book) {
     }
 }
 
-function getEmptyBook(title = '', amount = '') {
-    return { title, amount }
+function getEmptyBook(title = '') {
+    return { title }
 }
 
 function getDefaultFilter() {

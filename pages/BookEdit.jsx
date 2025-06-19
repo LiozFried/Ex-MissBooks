@@ -44,7 +44,8 @@ export function BookEdit() {
         setBookToEdit(prevBook => ({ ...prevBook, [field]: value})) 
     }
 
-    const { title, amount } = bookToEdit
+    const { title } = bookToEdit
+    console.log
     
     return (
         <section className="book-edit">
@@ -53,8 +54,8 @@ export function BookEdit() {
                 <label htmlFor="title">Title</label>
                 <input onChange={handleChange} value={title} type="text" name="title" id="title" />
 
-                <label htmlFor="amount">Price</label>
-                <input onChange={handleChange} value={amount || ''} type="number" name="amount" id="amount" />
+                {/* <label htmlFor="amount">Price</label>
+                <input onChange={handleChange} value={listPrice.amount || ''} type="number" name="amount" id="amount" /> */}
 
                 <button>Save</button>
             </form>
