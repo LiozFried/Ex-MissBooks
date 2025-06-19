@@ -11,6 +11,7 @@ export const bookService = {
     save,
     getDefaultFilter,
     getCategories,
+    getEmptyBook,
 }
 
 function query(filterBy = {}) {
@@ -48,9 +49,9 @@ function save(book) {
     }
 }
 
-// function getEmptyBook(title = '', listPrice = getDefualtListPrice()) {
-//     return { title, listPrice }
-// }
+function getEmptyBook(title = '', amount = '') {
+    return { title, amount }
+}
 
 function getDefaultFilter() {
     return { txt: '', amount: '' }
@@ -78,16 +79,6 @@ function getDefaultFilter() {
 //     }
 
 //     return book
-// }
-
-// function getDefualtListPrice() {
-//     var defualtListPrice = {
-//         amount: getRandomIntInclusive(10, 350),
-//         currencyCode: 'EUR',
-//         isOnSale: Math.random() > 0.3 ? true : false
-//     }
-
-//     return defualtListPrice
 // }
 
 function _createBooks() {
