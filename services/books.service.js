@@ -1,5 +1,6 @@
 import { loadFromStorage, makeId, saveToStorage, makeLorem, getRandomIntInclusive } from './util.service.js'
 import { storageService } from './async-storage.service.js'
+import { googleBook } from '../data/googleBook.js'
 
 const BOOK_KEY = 'BookDB'
 _createBooks()
@@ -13,6 +14,8 @@ export const bookService = {
     getCategories,
     getEmptyBook,
     getEmptyReview,
+    getBooksFromGoogle,
+    mapGoogleBookToAppBook,
 }
 
 function query(filterBy = {}) {
@@ -140,4 +143,34 @@ function _setNextPrevBookId(book) {
         book.prevBookId = prevBook.id
         return book
     })
+}
+
+function getBooksFromGoogle(searchTerm) {
+    // return Promise.resolve(googleBook.items) //Demo Data from google api books.
+
+    return fetch(`https://www.googleapis.com/books/v1/volumes?printType=books&q=${searchTerm}`)
+        .then(res => res.json())
+        .then(res => res.items)
+}
+
+function mapGoogleBookToAppBook(googleBook) {
+    const info = googleBook.volumeInfo
+
+    return {
+        id: googleBook.id || utilService.makeId(),
+        title: info.title || 'Untitled',
+        subtitle: info.subtitle || utilService.makeLorem(4),
+        authors: info.authors,
+        publishedDate: info.publishedDate || '',
+        description: info.description || utilService.makeLorem(28),
+        pageCount: info.pageCount || utilService.getRandomIntInclusive(20, 600),
+        categories: info.categories,
+        thumbnail: (info.imageLinks && info.imageLinks.thumbnail) ? info.imageLinks.thumbnail : `./assets/img/BooksImages/${utilService.getRandomIntInclusive(1, 20)}.jpg`,
+        language: info.language || 'en',
+        listPrice: {
+            amount: utilService.getRandomIntInclusive(15, 400),
+            currencyCode: 'EUR',
+            isOnSale: Math.random() > 0.7
+        }
+    }
 }
