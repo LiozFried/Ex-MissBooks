@@ -95,6 +95,16 @@ export function BookDetails() {
             </section>
 
             <AddReview onAddReview={onAddReview} />
+
+            <section>
+                <Link to={`/books/${book.prevBookId}`}>
+                    <button>Prev</button>
+                </Link>
+                <Link to={`/books/${book.nextBookId}`}>
+                    <button>Next</button>
+                </Link>
+            </section>
+
             <button onClick={onBack}>Back</button>
         </section>
     )
