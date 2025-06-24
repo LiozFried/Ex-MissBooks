@@ -1,8 +1,10 @@
 import { BookPreview } from "../cmps/BookPreview.jsx"
 import { LongText } from "../cmps/LongText.jsx"
 import { bookService } from "../services/books.service.js"
+import { showSuccessMsg } from "../services/event-bus.service.js"
+import { AddReview } from "../cmps/AddReview.jsx"
 
-const {useParams, useNavigate, Link } = ReactRouterDOM
+const { useParams, useNavigate, Link } = ReactRouterDOM
 const { useState, useEffect } = React
 
 export function BookDetails() {
@@ -44,6 +46,20 @@ export function BookDetails() {
         navigate('/books')
     }
 
+    function onAddReview(review) {
+        if (!book.reviwes) {
+            book.reviwes = [review]
+        } else {
+            book.reviwes.push(review)
+        }
+
+        bookService.save(book)
+            .then(book => {
+                showSuccessMsg('New review added')
+                setBook((prevBook) => ({ ...prevBook, book }))
+            })
+    }
+
     if (!book) return <div>Loading...</div>
 
     return (
@@ -55,7 +71,7 @@ export function BookDetails() {
             <section className="publish-details">
                 <h3>Authors</h3>
                 <ul>
-                    {book.authors.map(author => 
+                    {book.authors.map(author =>
                         <li key={author}>{author}</li>
                     )}
                 </ul>
@@ -64,6 +80,21 @@ export function BookDetails() {
                 <p>Page Count: {getPageCount(book.pageCount)}</p>
                 <p>Published Date: {getPublishDate(book.publishedDate)}</p>
             </section>
+
+            <section className="book-review">
+                <h3>Reviews:</h3>
+                {book.reviwes ? <ul>
+                    {book.reviwes.map((review, idx) => <li key={idx}>
+                        <p>{review.fullname}</p>
+                        <p>{review.rating}</p>
+                        <p>{review.readAt}</p>
+                    </li>
+                    )}
+                </ul> : 'No Reviwes yet..'
+                }
+            </section>
+
+            <AddReview onAddReview={onAddReview} />
             <button onClick={onBack}>Back</button>
         </section>
     )

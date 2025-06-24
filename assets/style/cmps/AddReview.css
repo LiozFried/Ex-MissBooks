@@ -1,0 +1,14 @@
+.add-review form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6em;
+}
+
+.add-review form input {
+    margin-inline-start: 0.6em;
+}
+
+.book-review li{
+    margin-block-end: 0,2em;
+    background-color: rgb(190, 234, 255);
+}

@@ -12,6 +12,7 @@ export const bookService = {
     getDefaultFilter,
     getCategories,
     getEmptyBook,
+    getEmptyReview,
 }
 
 function query(filterBy = {}) {
@@ -119,4 +120,12 @@ function getCategories() {
         .then(books =>
             [...new Set(books.flatMap(book => book.categories))]
         )
+}
+
+function getEmptyReview() {
+    return {
+        fullname: '',
+        rating: '',
+        readAt: ''
+    }
 }
