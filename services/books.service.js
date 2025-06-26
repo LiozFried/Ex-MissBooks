@@ -16,6 +16,7 @@ export const bookService = {
     getEmptyReview,
     getBooksFromGoogle,
     mapGoogleBookToAppBook,
+    getFilterFromSearchParams,
 }
 
 function query(filterBy = {}) {
@@ -172,5 +173,15 @@ function mapGoogleBookToAppBook(googleBook) {
             currencyCode: 'EUR',
             isOnSale: Math.random() > 0.7
         }
+    }
+}
+
+function getFilterFromSearchParams(searchParams) {
+    const txt = searchParams.get('txt') || ''
+    const amount = searchParams.get('amount') || ''
+
+    return {
+        txt,
+        amount
     }
 }
