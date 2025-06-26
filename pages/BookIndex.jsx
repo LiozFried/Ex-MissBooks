@@ -20,7 +20,11 @@ export function BookIndex() {
     function loadBooks() {
         bookService.query(filterBy)
             .then(books => setBooks(books))
-            .catch(err => console.log('err:', err))
+            .catch(err => {
+                console.log('err:', err)
+                showErrorMsg('Cannot get books...')
+            })
+            
     }
 
     function onRemoveBook(bookId) {
